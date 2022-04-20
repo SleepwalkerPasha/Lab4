@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My profile</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@300&display=swap" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		h2{
+            padding-top: 50px;
+		}
+
+		/* Full-width input fields */
+		input[type=text], input[type=password] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+
+		input:required:valid{
+			border-color: green;
+		}
+
+		/* Set a style for all buttons */
+		button {
+			background-color: #933BA8;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+		}
+
+		.validateBtn{
+			background-color: #933BA8;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+		}
+
+		.validateBtn:hover{
+			background-color: #E7ABF5;
+		}
+
+		button:hover {
+			background-color: #E7ABF5;
+		}
+
+		/* Extra styles for the cancel button */
+		.cancelbtn {
+			width: auto;
+			padding: 10px 18px;
+			background-color: #f44336;
+		}
+
+		/* Center the image and position the close button */
+		.imgcontainer {
+			text-align: center;
+			margin: 24px 0 12px 0;
+			position: relative;
+		}
+
+		img.avatar {
+			width: 40%;
+			border-radius: 50%;
+		}
+
+		.container {
+			padding: 16px;
+		}
+
+		span.psw {
+			float: right;
+			padding-top: 16px;
+		}
+
+		.input-requirements {
+			font-size: 1.3rem;
+			font-style: italic;
+			text-align: left;
+			list-style: disc;
+			list-style-position: inside;
+			max-width: 400px;
+			margin: 10px auto;
+			color: rgb(150,150,150);
+		}
+
+		input.uname{
+			-webkit-appearance: none;
+
+			width: 100%;
+			border: 1px solid #333;
+			margin: 0;
+
+			font-family: inherit;
+			font-size: 90%;
+
+			box-sizing: border-box;
+		}
+
+		input.invalid{
+			border-color: red;
+			background-color: #FDD;
+		}
+
+		input:focus.invalid {
+			outline: none;
+		}
+
+		.input-requirements li.invalid {
+			color: #e74c3c;
+		}
+		.input-requirements li.valid {
+			color: #2ecc71;
+		}
+
+		.input-requirements li.valid:after {
+			display: inline-block;
+			padding-left: 10px;
+			content: "\2713";
+		}
+
+		input:not([type="submit"]) + .input-requirements {
+			overflow: hidden;
+			max-height: 0;
+			transition: max-height 1s ease-out;
+		}
+
+		input:not([type="submit"]):valid {
+			border-color: #2ecc71;
+		}
+
+		input:not([type="submit"]):hover + .input-requirements,
+		input:not([type="submit"]):focus + .input-requirements,
+		input:not([type="submit"]):active + .input-requirements {
+			max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
+			transition: max-height 1s ease-in;
+		}
+
+		.error {
+			width  : 100%;
+			padding: 0;
+
+			font-size: 80%;
+			color: white;
+			background-color: #900;
+			border-radius: 0 0 5px 5px;
+			box-sizing: border-box;
+		}
+
+		.error.active {
+			padding: 0.3em;
+		}
+
+
+		/* The Modal (background) */
+		.modal {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			padding-top: 60px;
+		}
+
+		/* Modal Content/Box */
+		.modal-content {
+			background-color: #fefefe;
+			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+			border: 1px solid #888;
+			width: 80%; /* Could be more or less, depending on screen size */
+		}
+
+		/* The Close Button (x) */
+		.close {
+			position: absolute;
+			right: 25px;
+			top: 0;
+			color: #000;
+			font-size: 35px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: red;
+			cursor: pointer;
+		}
+
+		/* Add Zoom Animation */
+		.animate {
+			-webkit-animation: animatezoom 0.6s;
+			animation: animatezoom 0.6s
+		}
+
+		@-webkit-keyframes animatezoom {
+			from {-webkit-transform: scale(0)}
+			to {-webkit-transform: scale(1)}
+		}
+
+		@keyframes animatezoom {
+			from {transform: scale(0)}
+			to {transform: scale(1)}
+		}
+
+		/* Change styles for span and cancel button on extra small screens */
+		@media screen and (max-width: 300px) {
+			span.psw {
+				display: block;
+				float: none;
+			}
+			.cancelbtn {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class = "topnav">
+		<nav>
+		<a href="/">Home</a>
+		<a href="/search">Search</a>
+		<a href="/saved">Saved</a>
+  		<a class="active" href="/profile">Profile</a>
+  		</nav>
+	</div>
+	<div class = "logform">
+        <h2>Login Form</h2>
+		<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+		<div id="id01" class="modal">
+
+			<form class="modal-content animate" action="/apiToBot/" method="POST">{% csrf_token %}
+				<div class="imgcontainer">
+					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+					<img src="{% static 'img/avatar_icon.jpg' %}" alt="Avatar" class="avatar">
+				</div>
+
+				<div class="container">
+					<label><b>Username</b></label>
+					<input type="text" placeholder="Enterurl Username" class="uname field" name="uname" required minlength="2">
+					<span class="error" aria-live="polite"></span>
+					<ul class ="input-requirements">
+						<li>At least 2 characters long</li>
+						<li>Must only contains letters and first uppercase letter</li>
+					</ul>
+
+					<label><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" class="psw field" name="psw" required maxlength="100" minlength="8">
+					<span class="error" aria-live="polite"></span>
+					<ul class="input-requirements">
+						<li>At least 8 characters long (and less than 100 characters)</li>
+						<li>Contains at least 1 number</li>
+						<li>Contains at least 1 lowercase letter</li>
+						<li>Contains at least 1 uppercase letter</li>
+						<li>Contains a special character (e.g. @ !)</li>
+					</ul>
+
+					<button class="validateBtn btn-primary" type="submit">Login</button>
+					<label>
+						<input type="checkbox" checked="checked" name="remember"> Remember me
+					</label>
+				</div>
+
+				<div class="container" style="background-color:#f1f1f1">
+					<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+					<span class="psw">Forgot <a href="#">password?</a></span>
+				</div>
+				<script src="{% static 'js/script.js' %}}"></script>
+			</form>
+
+		</div>
+		<script>
+			// Get the modal
+			var modal = document.getElementById('id01');
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		</script>
+	</div>
+</body>
+</html>

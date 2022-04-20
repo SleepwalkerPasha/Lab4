@@ -1,0 +1,97 @@
+
+.main{
+   margin-top: 50px;
+}
+
+.topnav {
+    background-color: #8FA7A8;
+    overflow: auto;
+    position:  fixed;
+    top: 0;
+    width:  100%;
+    z-index: 50;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    display: block;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #E7ABF5;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #933BA8;
+    color: white;
+}
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.column img:hover {
+    opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.text p {
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+.text span {
+    font-style:  italic;
+}
+
+.mainOL{
+    color:  rebeccapurple;
+    border: 2px solid #ccc;
+    padding:  1em;
+}
+
+.mainUl{
+    color: #000;
+    font-weight: bold;
+}
+
+.animated-text{
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-direction: alternate;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+}
+
